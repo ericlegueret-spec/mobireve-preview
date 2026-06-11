@@ -6,403 +6,713 @@
 <title>Mobirêve — Meubles & Literie depuis 1927 · Mouscron</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --creme: #F8F4ED; --creme-deep: #EDE7DA; --bois: #8B6914;
-    --bois-light: #B8952A; --bois-pale: #F0E8D0; --ardoise: #2C2418;
-    --ardoise-mid: #5A4F3E; --navy: #1C2B4A; --blanc: #FFFFFF;
-    --serif: 'Playfair Display', Georgia, serif; --sans: 'Inter', system-ui, sans-serif;
-  }
-  html { scroll-behavior: smooth; }
-  body { background: var(--creme); color: var(--ardoise); font-family: var(--sans); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* TIMELINE RAIL */
-  .timeline-rail { position: fixed; left: 28px; top: 50%; transform: translateY(-50%); width: 1px; height: 60vh; background: linear-gradient(to bottom, transparent, var(--bois), transparent); z-index: 100; opacity: 0.35; }
-  .timeline-rail::before { content: '1927'; position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-family: var(--serif); font-size: 10px; color: var(--bois); letter-spacing: 0.1em; white-space: nowrap; }
-  .timeline-rail::after { content: '2026'; position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); font-family: var(--serif); font-size: 10px; color: var(--bois); letter-spacing: 0.1em; white-space: nowrap; }
+:root {
+  --creme:     #F5F0E8;
+  --creme-off: #EDE6D8;
+  --bois:      #7A5C1E;
+  --bois-warm: #A0783A;
+  --ardoise:   #1E1A14;
+  --mid:       #6B6154;
+  --blanc:     #FFFFFF;
+  --navy:      #15202E;
+  --serif:     'Cormorant Garamond', Georgia, serif;
+  --sans:      'Inter', system-ui, sans-serif;
+}
 
-  /* NAV */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 18px 60px; background: rgba(248,244,237,0.94); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(139,105,20,0.12); }
-  .nav-logo { font-family: var(--serif); font-size: 22px; font-weight: 700; color: var(--ardoise); letter-spacing: -0.02em; }
-  .nav-logo span { color: var(--bois); }
-  .nav-links { display: flex; gap: 36px; list-style: none; }
-  .nav-links a { font-size: 13px; font-weight: 500; color: var(--ardoise-mid); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--bois); }
-  .nav-cta { background: var(--bois) !important; color: var(--blanc) !important; padding: 10px 22px; border-radius: 2px; }
-  .nav-cta:hover { background: var(--ardoise) !important; }
+html { scroll-behavior: smooth; }
+body { background: var(--creme); color: var(--ardoise); font-family: var(--sans); overflow-x: hidden; }
 
-  /* HERO */
-  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; }
-  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 80px 60px 80px 90px; }
-  .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bois); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
-  .eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--bois); }
-  .hero-title { font-family: var(--serif); font-size: clamp(36px,4.5vw,58px); font-weight: 700; line-height: 1.1; color: var(--ardoise); margin-bottom: 28px; letter-spacing: -0.02em; }
-  .hero-title em { font-style: italic; color: var(--bois); }
-  .hero-sub { font-size: 17px; color: var(--ardoise-mid); line-height: 1.7; max-width: 420px; margin-bottom: 44px; }
-  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
-  .btn-primary { background: var(--bois); color: var(--blanc); padding: 15px 32px; font-size: 14px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; border-radius: 2px; transition: background 0.2s, transform 0.15s; display: inline-block; font-family: var(--sans); }
-  .btn-primary:hover { background: var(--ardoise); transform: translateY(-1px); }
-  .btn-secondary { background: transparent; color: var(--ardoise); padding: 15px 32px; font-size: 14px; font-weight: 500; letter-spacing: 0.04em; text-decoration: none; border: 1.5px solid var(--ardoise); border-radius: 2px; transition: all 0.2s; display: inline-block; }
-  .btn-secondary:hover { border-color: var(--bois); color: var(--bois); }
-  .hero-stats { display: flex; gap: 40px; margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--creme-deep); }
-  .stat-num { font-family: var(--serif); font-size: 32px; font-weight: 700; color: var(--ardoise); line-height: 1; }
-  .stat-label { font-size: 12px; color: var(--ardoise-mid); margin-top: 4px; letter-spacing: 0.05em; }
-  .hero-right { position: relative; background: var(--ardoise); overflow: hidden; }
-  .hero-bg-placeholder { width: 100%; height: 100%; background: linear-gradient(160deg, #3D2E1A 0%, #1C2B4A 100%); display: flex; align-items: center; justify-content: center; }
-  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(44,36,24,0.5) 0%, rgba(28,43,74,0.35) 100%); }
-  .hero-badge { position: absolute; bottom: 48px; left: 48px; z-index: 2; background: rgba(248,244,237,0.96); padding: 20px 24px; border-radius: 4px; border-left: 3px solid var(--bois); }
-  .hero-badge-title { font-family: var(--serif); font-size: 15px; font-weight: 600; color: var(--ardoise); margin-bottom: 4px; }
-  .hero-badge-sub { font-size: 12px; color: var(--ardoise-mid); }
-  .hero-gen { position: absolute; top: 48px; right: 48px; z-index: 2; text-align: right; }
-  .hero-gen-num { font-family: var(--serif); font-size: 80px; font-weight: 700; color: rgba(248,244,237,0.1); line-height: 1; }
-  .hero-gen-label { font-size: 11px; color: rgba(248,244,237,0.4); letter-spacing: 0.15em; text-transform: uppercase; margin-top: -12px; }
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 56px; height: 72px;
+  transition: background 0.4s, box-shadow 0.4s;
+}
+nav.scrolled {
+  background: rgba(245,240,232,0.96);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 rgba(122,92,30,0.12);
+}
+.nav-logo img { height: 34px; display: block; }
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; text-decoration: none;
+  color: rgba(255,255,255,0.85); transition: color 0.2s;
+}
+nav.scrolled .nav-links a { color: var(--mid); }
+.nav-links a:hover { color: var(--blanc); }
+nav.scrolled .nav-links a:hover { color: var(--bois); }
+.nav-cta-link {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; text-decoration: none;
+  color: rgba(255,255,255,0.85); padding: 10px 24px;
+  border: 1px solid rgba(255,255,255,0.35); transition: all 0.25s;
+}
+.nav-cta-link:hover { background: rgba(255,255,255,0.15); }
+nav.scrolled .nav-cta-link { color: var(--ardoise); border-color: var(--ardoise); }
+nav.scrolled .nav-cta-link:hover { background: var(--ardoise); color: var(--blanc); }
 
-  /* SHOWROOMS */
-  .showrooms { background: var(--blanc); padding: 100px 90px; }
-  .section-header { max-width: 560px; margin-bottom: 64px; }
-  .section-title { font-family: var(--serif); font-size: clamp(28px,3vw,42px); font-weight: 700; color: var(--ardoise); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
-  .section-sub { font-size: 16px; color: var(--ardoise-mid); line-height: 1.7; }
-  .showrooms-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
-  .showroom-card { position: relative; overflow: hidden; aspect-ratio: 4/3; cursor: default; }
-  .showroom-bg { width: 100%; height: 100%; transition: transform 0.5s ease; }
-  .showroom-card:hover .showroom-bg { transform: scale(1.04); }
-  .showroom-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(44,36,24,0.94) 0%, rgba(44,36,24,0.15) 65%, transparent 100%); }
-  .showroom-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 36px; z-index: 2; }
-  .showroom-type { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bois-light); margin-bottom: 8px; }
-  .showroom-name { font-family: var(--serif); font-size: 26px; font-weight: 700; color: var(--blanc); margin-bottom: 6px; }
-  .showroom-addr { font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 6px; }
-  .showroom-phone { font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 22px; }
-  .btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid rgba(255,255,255,0.3); color: var(--blanc); padding: 10px 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: all 0.2s; }
-  .btn-ghost:hover { background: var(--bois); border-color: var(--bois); }
+/* ── HERO ── */
+.hero {
+  position: relative; height: 100vh; min-height: 640px;
+  display: flex; align-items: flex-end; overflow: hidden;
+}
+.hero-video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; z-index: 0;
+}
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(21,32,46,0.25) 0%,
+    rgba(21,32,46,0.1) 40%,
+    rgba(21,32,46,0.65) 100%
+  );
+}
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 0 72px 80px; width: 100%;
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: flex-end; gap: 60px;
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(52px, 7.5vw, 104px);
+  font-weight: 300; line-height: 0.95;
+  color: var(--blanc); letter-spacing: -0.02em;
+}
+.hero-title em { font-style: italic; color: rgba(255,255,255,0.75); }
+.hero-right-col { text-align: right; flex-shrink: 0; padding-bottom: 8px; }
+.hero-tagline {
+  font-size: 13px; color: rgba(255,255,255,0.55);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 24px; line-height: 1.7;
+}
+.hero-since {
+  font-family: var(--serif);
+  font-size: 11px; font-weight: 400;
+  color: rgba(255,255,255,0.35); letter-spacing: 0.3em;
+  text-transform: uppercase; margin-bottom: 32px;
+}
+.btn-hero {
+  display: inline-block; padding: 14px 32px;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; text-decoration: none;
+  background: var(--bois-warm); color: var(--blanc);
+  transition: background 0.25s, transform 0.15s;
+}
+.btn-hero:hover { background: var(--ardoise); transform: translateY(-2px); }
+.hero-scroll {
+  position: absolute; bottom: 32px; left: 50%;
+  transform: translateX(-50%); z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.hero-scroll span {
+  font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+.scroll-line {
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+  animation: scrollpulse 2s ease-in-out infinite;
+}
+@keyframes scrollpulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
 
-  /* MARQUES */
-  .marques { background: var(--creme); padding: 80px 90px; }
-  .marques-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 52px; gap: 40px; }
-  .marques-note { font-size: 15px; color: var(--ardoise-mid); max-width: 300px; text-align: right; line-height: 1.6; align-self: flex-end; }
-  .marques-grid { display: flex; flex-wrap: wrap; gap: 3px; }
-  .marque-pill { background: var(--blanc); border: 1px solid var(--creme-deep); padding: 14px 28px; font-size: 13px; font-weight: 600; color: var(--ardoise-mid); letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.2s; }
-  .marque-pill:hover { background: var(--bois); color: var(--blanc); border-color: var(--bois); cursor: default; }
-  .marque-pill.featured { background: var(--bois-pale); border-color: rgba(139,105,20,0.3); color: var(--bois); }
-  .marque-logo-pill { background: var(--blanc); border: 1px solid var(--creme-deep); padding: 16px 24px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; min-width: 140px; }
-  .marque-logo-pill img { height: 36px; width: auto; max-width: 120px; object-fit: contain; filter: grayscale(1); opacity: 0.65; transition: all 0.2s; }
-  .marque-logo-pill:hover img { filter: grayscale(0); opacity: 1; }
-  .marque-logo-pill:hover { border-color: var(--bois); cursor: default; }
-  .marque-logo-pill.featured { background: var(--bois-pale); border-color: rgba(139,105,20,0.3); }
-  .marque-logo-pill.featured img { filter: grayscale(0); opacity: 1; }
+/* ── INTRO ÉDITORIALE ── */
+.intro {
+  background: var(--blanc); padding: 120px 72px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: start;
+}
+.intro-label {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--bois-warm);
+  margin-bottom: 28px; display: flex; align-items: center; gap: 14px;
+}
+.intro-label::before { content: ''; width: 32px; height: 1px; background: var(--bois-warm); }
+.intro-headline {
+  font-family: var(--serif);
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 300; line-height: 1.1;
+  color: var(--ardoise); letter-spacing: -0.01em;
+}
+.intro-headline em { font-style: italic; }
+.intro-right { padding-top: 80px; }
+.intro-body {
+  font-size: 16px; line-height: 1.85; color: var(--mid);
+  margin-bottom: 48px; max-width: 420px;
+}
+.intro-stats {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 0; border-top: 1px solid var(--creme-off);
+}
+.intro-stat { padding: 28px 0 0; border-right: 1px solid var(--creme-off); padding-right: 24px; margin-right: 24px; }
+.intro-stat:last-child { border-right: none; padding-right: 0; margin-right: 0; }
+.intro-stat-num {
+  font-family: var(--serif); font-size: 40px; font-weight: 300;
+  color: var(--ardoise); line-height: 1; margin-bottom: 6px;
+}
+.intro-stat-label { font-size: 11px; color: var(--mid); letter-spacing: 0.08em; line-height: 1.4; }
 
-  /* AVIS */
-  .avis { background: var(--navy); padding: 100px 90px; }
-  .avis-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 56px; gap: 40px; }
-  .avis-header .section-title { color: var(--blanc); }
-  .avis-header .eyebrow { color: var(--bois-light); }
-  .avis-header .eyebrow::before { background: var(--bois-light); }
-  .avis-score { text-align: right; flex-shrink: 0; }
-  .avis-score-num { font-family: var(--serif); font-size: 56px; font-weight: 700; color: var(--blanc); line-height: 1; }
-  .avis-score-stars { color: var(--bois-light); font-size: 18px; margin: 4px 0; }
-  .avis-score-label { font-size: 12px; color: rgba(255,255,255,0.35); letter-spacing: 0.05em; }
-  .avis-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
-  .avis-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.07); padding: 32px; transition: background 0.2s; }
-  .avis-card:hover { background: rgba(255,255,255,0.08); }
-  .avis-stars { color: var(--bois-light); font-size: 14px; margin-bottom: 16px; }
-  .avis-text { font-family: var(--serif); font-style: italic; font-size: 16px; color: rgba(255,255,255,0.82); line-height: 1.65; margin-bottom: 24px; }
-  .avis-author { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+/* ── SHOWROOMS ── */
+.showrooms { background: var(--ardoise); padding: 0; }
+.showrooms-header {
+  padding: 100px 72px 72px;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.showrooms-title {
+  font-family: var(--serif);
+  font-size: clamp(42px, 5vw, 68px);
+  font-weight: 300; color: var(--blanc); line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.showrooms-title em { font-style: italic; opacity: 0.5; }
+.showrooms-subtitle {
+  font-size: 14px; color: rgba(255,255,255,0.4);
+  max-width: 280px; line-height: 1.7; text-align: right;
+}
+.showrooms-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.showroom-card { position: relative; aspect-ratio: 4/3; overflow: hidden; }
+.showroom-bg {
+  width: 100%; height: 100%; transition: transform 0.7s cubic-bezier(0.25,0.1,0.25,1);
+}
+.showroom-card:hover .showroom-bg { transform: scale(1.06); }
+.showroom-veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(21,32,46,0.96) 0%, rgba(21,32,46,0.2) 55%, transparent 100%);
+  transition: opacity 0.4s;
+}
+.showroom-card:hover .showroom-veil { opacity: 0.85; }
+.showroom-body {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 48px; z-index: 2;
+}
+.showroom-type {
+  font-size: 9px; font-weight: 500; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--bois-warm);
+  margin-bottom: 12px;
+}
+.showroom-name {
+  font-family: var(--serif); font-size: 36px; font-weight: 300;
+  color: var(--blanc); line-height: 1; margin-bottom: 10px;
+}
+.showroom-addr { font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 4px; }
+.showroom-tel { font-size: 13px; color: rgba(255,255,255,0.3); margin-bottom: 32px; }
+.btn-showroom-link {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; text-decoration: none;
+  color: rgba(255,255,255,0.55); transition: color 0.2s;
+}
+.btn-showroom-link::after {
+  content: '→'; transition: transform 0.2s;
+}
+.showroom-card:hover .btn-showroom-link { color: var(--blanc); }
+.showroom-card:hover .btn-showroom-link::after { transform: translateX(6px); }
 
-  /* FORMULAIRE */
-  .formulaire { background: var(--creme-deep); padding: 100px 90px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-  .form-features { display: flex; flex-direction: column; gap: 20px; margin-top: 40px; }
-  .form-feature { display: flex; align-items: flex-start; gap: 14px; }
-  .form-icon { width: 34px; height: 34px; background: var(--bois); border-radius: 2px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 15px; }
-  .form-feature-text { font-size: 14px; color: var(--ardoise-mid); line-height: 1.6; }
-  .form-feature-text strong { display: block; color: var(--ardoise); font-weight: 600; margin-bottom: 2px; font-size: 14px; }
-  .form-card { background: var(--blanc); padding: 48px; border-radius: 4px; border: 1px solid var(--creme-deep); box-shadow: 0 24px 64px rgba(44,36,24,0.09); }
-  .form-card-title { font-family: var(--serif); font-size: 22px; font-weight: 700; color: var(--ardoise); margin-bottom: 6px; }
-  .form-card-sub { font-size: 13px; color: var(--ardoise-mid); margin-bottom: 32px; line-height: 1.5; }
-  .form-group { margin-bottom: 18px; }
-  .form-label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ardoise-mid); margin-bottom: 7px; }
-  .form-input, .form-select { width: 100%; padding: 12px 16px; font-size: 14px; font-family: var(--sans); color: var(--ardoise); background: var(--creme); border: 1.5px solid var(--creme-deep); border-radius: 2px; outline: none; transition: border-color 0.2s; appearance: none; -webkit-appearance: none; }
-  .form-input:focus, .form-select:focus { border-color: var(--bois); background: var(--blanc); }
-  .form-input::placeholder { color: #C4B99A; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .form-submit { width: 100%; padding: 16px; background: var(--bois); color: var(--blanc); font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; border: none; border-radius: 2px; cursor: pointer; margin-top: 8px; transition: background 0.2s; font-family: var(--sans); }
-  .form-submit:hover { background: var(--ardoise); }
-  .form-note { font-size: 11px; color: var(--ardoise-mid); text-align: center; margin-top: 14px; opacity: 0.55; }
-  .form-success { display: none; text-align: center; padding: 48px 20px; }
-  .form-success-icon { font-size: 52px; margin-bottom: 20px; }
-  .form-success-title { font-family: var(--serif); font-size: 24px; font-weight: 700; color: var(--ardoise); margin-bottom: 12px; }
-  .form-success-text { font-size: 14px; color: var(--ardoise-mid); line-height: 1.7; }
+/* ── MARQUES — MARQUEE ── */
+.marques { background: var(--blanc); padding: 100px 0; overflow: hidden; }
+.marques-header {
+  padding: 0 72px 72px;
+  display: flex; align-items: flex-end; gap: 80px;
+}
+.marques-title {
+  font-family: var(--serif);
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight: 300; color: var(--ardoise); line-height: 1.05;
+  white-space: nowrap;
+}
+.marques-note {
+  font-size: 14px; color: var(--mid); line-height: 1.75;
+  max-width: 360px; padding-bottom: 6px;
+}
+.marquee-wrap { position: relative; overflow: hidden; padding: 20px 0; }
+.marquee-wrap::before, .marquee-wrap::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2;
+  pointer-events: none;
+}
+.marquee-wrap::before { left: 0; background: linear-gradient(to right, var(--blanc), transparent); }
+.marquee-wrap::after { right: 0; background: linear-gradient(to left, var(--blanc), transparent); }
+.marquee-track {
+  display: flex; gap: 0;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+.marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marque-item {
+  display: flex; align-items: center; justify-content: center;
+  width: 220px; height: 110px;
+  border-right: 1px solid var(--creme-off);
+  padding: 0 36px; flex-shrink: 0;
+  transition: background 0.25s;
+  cursor: default;
+}
+.marque-item:hover { background: var(--creme); }
+.marque-item img {
+  max-width: 140px; max-height: 64px;
+  width: auto; height: auto; object-fit: contain;
+  filter: grayscale(1) contrast(0.7);
+  opacity: 0.65;
+  transition: all 0.3s;
+}
+.marque-item:hover img { filter: grayscale(0) contrast(1); opacity: 1; transform: scale(1.08); }
 
-  /* FOOTER */
-  footer { background: var(--ardoise); padding: 64px 90px 40px; }
-  .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 32px; }
-  .footer-brand { font-family: var(--serif); font-size: 26px; font-weight: 700; color: var(--blanc); margin-bottom: 16px; }
-  .footer-brand span { color: var(--bois-light); }
-  .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.7; max-width: 260px; }
-  .footer-col-title { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bois-light); margin-bottom: 20px; }
-  .footer-addr { font-size: 13px; line-height: 1.9; color: rgba(255,255,255,0.45); }
-  .footer-addr strong { display: block; color: rgba(255,255,255,0.7); font-weight: 500; margin-top: 16px; margin-bottom: 2px; }
-  .footer-addr strong:first-child { margin-top: 0; }
-  .footer-link { color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
-  .footer-link:hover { color: var(--bois-light); }
-  .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
-  .footer-copy { color: rgba(255,255,255,0.2); }
-  .footer-since { font-family: var(--serif); font-style: italic; color: rgba(255,255,255,0.15); }
+/* ── AVIS ── */
+.avis { background: var(--creme); padding: 120px 72px; }
+.avis-header {
+  display: flex; align-items: flex-end;
+  justify-content: space-between; margin-bottom: 80px; gap: 40px;
+}
+.avis-title {
+  font-family: var(--serif);
+  font-size: clamp(42px, 5vw, 64px);
+  font-weight: 300; color: var(--ardoise); line-height: 1.05;
+}
+.avis-title em { font-style: italic; }
+.avis-score-block { text-align: right; }
+.avis-score-num {
+  font-family: var(--serif); font-size: 72px; font-weight: 300;
+  color: var(--ardoise); line-height: 1;
+}
+.avis-score-stars { color: var(--bois-warm); font-size: 16px; margin: 4px 0 6px; letter-spacing: 2px; }
+.avis-score-count { font-size: 11px; color: var(--mid); letter-spacing: 0.1em; }
+.avis-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+}
+.avis-card {
+  background: var(--blanc); padding: 48px 40px;
+  transition: box-shadow 0.3s;
+}
+.avis-card:nth-child(2) { margin-top: 48px; }
+.avis-card:hover { box-shadow: 0 12px 48px rgba(30,26,20,0.07); }
+.avis-quote-mark {
+  font-family: var(--serif); font-size: 72px; font-weight: 300;
+  color: var(--creme-off); line-height: 0.7; margin-bottom: 16px;
+}
+.avis-text {
+  font-family: var(--serif); font-style: italic;
+  font-size: 20px; font-weight: 300;
+  color: var(--ardoise); line-height: 1.6; margin-bottom: 32px;
+}
+.avis-sep { width: 32px; height: 1px; background: var(--creme-off); margin-bottom: 20px; }
+.avis-stars-small { color: var(--bois-warm); font-size: 12px; margin-bottom: 8px; letter-spacing: 2px; }
+.avis-author { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); }
 
-  /* FADE IN */
-  .fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
-  .fade-in.visible { opacity: 1; transform: translateY(0); }
+/* ── FORMULAIRE ── */
+.formulaire { background: var(--navy); padding: 120px 72px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; }
+.form-left-label {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--bois-warm);
+  margin-bottom: 28px; display: flex; align-items: center; gap: 14px;
+}
+.form-left-label::before { content: ''; width: 24px; height: 1px; background: var(--bois-warm); }
+.form-left-title {
+  font-family: var(--serif);
+  font-size: clamp(36px, 4vw, 54px);
+  font-weight: 300; color: var(--blanc); line-height: 1.1;
+  margin-bottom: 28px;
+}
+.form-left-title em { font-style: italic; opacity: 0.55; }
+.form-left-body { font-size: 15px; color: rgba(255,255,255,0.45); line-height: 1.8; margin-bottom: 52px; max-width: 380px; }
+.form-features { display: flex; flex-direction: column; gap: 24px; }
+.form-feature { display: flex; align-items: flex-start; gap: 18px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.form-feature:last-child { border-bottom: none; padding-bottom: 0; }
+.form-feature-num {
+  font-family: var(--serif); font-size: 28px; font-weight: 300;
+  color: rgba(255,255,255,0.15); line-height: 1; flex-shrink: 0; width: 32px;
+}
+.form-feature-text strong { display: block; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7); margin-bottom: 4px; }
+.form-feature-text span { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.6; }
+.form-card { background: var(--creme); padding: 56px 48px; }
+.form-card-title { font-family: var(--serif); font-size: 28px; font-weight: 300; color: var(--ardoise); margin-bottom: 6px; }
+.form-card-sub { font-size: 13px; color: var(--mid); margin-bottom: 36px; line-height: 1.5; }
+.form-group { margin-bottom: 20px; }
+.form-label { display: block; font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); margin-bottom: 8px; }
+.form-input, .form-select {
+  width: 100%; padding: 14px 0; font-size: 15px; font-family: var(--sans);
+  color: var(--ardoise); background: transparent;
+  border: none; border-bottom: 1.5px solid var(--creme-off);
+  outline: none; transition: border-color 0.2s; appearance: none;
+}
+.form-input:focus, .form-select:focus { border-color: var(--bois); }
+.form-input::placeholder { color: #C8BDA8; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.form-submit {
+  width: 100%; padding: 18px; margin-top: 12px;
+  background: var(--ardoise); color: var(--blanc);
+  font-size: 11px; font-weight: 500; letter-spacing: 0.15em;
+  text-transform: uppercase; border: none; cursor: pointer;
+  font-family: var(--sans); transition: background 0.25s;
+}
+.form-submit:hover { background: var(--bois); }
+.form-note { font-size: 11px; color: var(--mid); text-align: center; margin-top: 16px; opacity: 0.6; }
+.form-success { display: none; text-align: center; padding: 60px 20px; }
+.form-success-title { font-family: var(--serif); font-size: 32px; font-weight: 300; color: var(--ardoise); margin-bottom: 16px; }
+.form-success-body { font-size: 14px; color: var(--mid); line-height: 1.7; }
 
-  /* MOBILE */
-  @media (max-width: 900px) {
-    .timeline-rail { display: none; }
-    nav { padding: 16px 20px; }
-    .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; }
-    .hero-left { padding: 100px 24px 60px; }
-    .hero-right { height: 280px; }
-    .hero-gen-num { font-size: 50px; }
-    .showrooms, .marques, .avis, .formulaire { padding: 64px 24px; }
-    .showrooms-grid, .avis-grid { grid-template-columns: 1fr; }
-    .avis-header, .marques-header { flex-direction: column; align-items: flex-start; gap: 20px; }
-    .marques-note { text-align: left; }
-    .formulaire { grid-template-columns: 1fr; gap: 48px; }
-    .form-card { padding: 28px 20px; }
-    .form-row { grid-template-columns: 1fr; }
-    footer { padding: 48px 24px 32px; }
-    .footer-top { grid-template-columns: 1fr; gap: 36px; }
-    .footer-bottom { flex-direction: column; gap: 8px; }
-  }
+/* ── FOOTER ── */
+footer { background: var(--ardoise); padding: 80px 72px 48px; }
+.footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 80px; padding-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 40px; }
+.footer-logo img { height: 36px; margin-bottom: 20px; display: block; }
+.footer-tagline { font-family: var(--serif); font-size: 17px; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.3); line-height: 1.6; max-width: 240px; }
+.footer-col-label { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--bois-warm); margin-bottom: 24px; }
+.footer-addr { font-size: 13px; line-height: 2; color: rgba(255,255,255,0.4); }
+.footer-addr strong { display: block; color: rgba(255,255,255,0.65); font-weight: 500; margin-top: 18px; margin-bottom: 2px; }
+.footer-addr strong:first-child { margin-top: 0; }
+.footer-link { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+.footer-link:hover { color: var(--bois-warm); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+.footer-copy { font-size: 11px; color: rgba(255,255,255,0.18); }
+.footer-since { font-family: var(--serif); font-style: italic; font-size: 13px; color: rgba(255,255,255,0.15); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.35s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .hero-content { padding: 0 28px 56px; grid-template-columns: 1fr; }
+  .hero-right-col { text-align: left; }
+  .intro, .form-grid { grid-template-columns: 1fr; gap: 48px; }
+  .intro-right { padding-top: 0; }
+  .showrooms-header { flex-direction: column; align-items: flex-start; gap: 20px; padding: 64px 28px 48px; }
+  .showrooms-subtitle { text-align: left; }
+  .showrooms-grid { grid-template-columns: 1fr; }
+  .marques-header { padding: 0 28px 48px; flex-direction: column; align-items: flex-start; gap: 20px; }
+  .avis { padding: 80px 28px; }
+  .avis-header { flex-direction: column; align-items: flex-start; gap: 24px; }
+  .avis-score-block { text-align: left; }
+  .avis-grid { grid-template-columns: 1fr; gap: 2px; }
+  .avis-card:nth-child(2) { margin-top: 0; }
+  .formulaire { padding: 80px 28px; }
+  .form-card { padding: 36px 24px; }
+  .form-row { grid-template-columns: 1fr; }
+  footer { padding: 60px 28px 36px; }
+  .footer-top { grid-template-columns: 1fr; gap: 40px; }
+  .intro { padding: 80px 28px; }
+  .showroom-body { padding: 28px; }
+  .showroom-name { font-size: 26px; }
+}
 </style>
 </head>
 <body>
-<div class="timeline-rail" aria-hidden="true"></div>
 
-<nav>
-  <a href="#hero" style="display:flex;align-items:center;"><img src="https://www.mobireve.biz/wp-content/uploads/2023/05/logo-blanc.png" alt="Mobirêve" style="height:36px;" onerror="this.outerHTML='<div class=nav-logo>Mobi<span style=color:#8B6914>r&ecirc;ve</span></div>'"></a>
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-logo">
+    <img src="https://www.mobireve.biz/wp-content/uploads/2023/05/logo-blanc.png" alt="Mobirêve"
+         onerror="this.style.display='none'">
+  </div>
   <ul class="nav-links">
     <li><a href="#showrooms">Showrooms</a></li>
     <li><a href="#marques">Marques</a></li>
-    <li><a href="#avis">Avis clients</a></li>
-    <li><a href="#visite" class="nav-cta">Planifier ma visite</a></li>
+    <li><a href="#avis">Avis</a></li>
+    <li><a href="#visite" class="nav-cta-link">Planifier ma visite</a></li>
   </ul>
 </nav>
 
-<section class="hero" id="hero">
-  <div class="hero-left">
-    <div class="eyebrow">Famille Vandamme · 4 générations</div>
-    <h1 class="hero-title">Depuis 1927,<br>le meuble de <em>famille</em><br>à Mouscron</h1>
-    <p class="hero-sub">Deux showrooms, un conseil d'expert, des marques belges et européennes sélectionnées pour durer. Pas des tendances — des choix pour la vie.</p>
-    <div class="hero-actions">
-      <a href="#visite" class="btn-primary">Planifier ma visite conseil</a>
-      <a href="#showrooms" class="btn-secondary">Découvrir nos showrooms</a>
-    </div>
-    <div class="hero-stats">
-      <div><div class="stat-num">100</div><div class="stat-label">Ans d'histoire locale</div></div>
-      <div><div class="stat-num">4.2★</div><div class="stat-label">100 avis Google</div></div>
-      <div><div class="stat-num">50 km</div><div class="stat-label">Livraison gratuite</div></div>
+<!-- HERO VIDÉO PLEIN ÉCRAN -->
+<section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline poster="">
+    <source src="https://www.mobireve.biz/wp-content/uploads/2024/01/videoweb.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">
+      Depuis 1927,<br>
+      le meuble<br>
+      <em>de famille.</em>
+    </h1>
+    <div class="hero-right-col">
+      <p class="hero-tagline">Meubles & Literie<br>Mouscron, Belgique</p>
+      <p class="hero-since">Famille Vandamme · 4 générations</p>
+      <a href="#visite" class="btn-hero">Planifier ma visite</a>
     </div>
   </div>
-  <div class="hero-right">
-    <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" onerror="this.style.display='none'">
-      <source src="https://www.mobireve.biz/wp-content/uploads/2024/01/videoweb.mp4" type="video/mp4">
-    </video>
-    <div class="hero-overlay"></div>
-    <div class="hero-gen" aria-hidden="true">
-      <div class="hero-gen-num">4</div>
-      <div class="hero-gen-label">ème génération</div>
-    </div>
-    <div class="hero-badge">
-      <div class="hero-badge-title">Grégoire Vandamme</div>
-      <div class="hero-badge-sub">Dirigeant · 4ème génération depuis 1927</div>
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="scroll-line"></div>
+    <span>Découvrir</span>
+  </div>
+</section>
+
+<!-- INTRO ÉDITORIALE -->
+<section class="intro" id="about">
+  <div class="intro-left reveal">
+    <div class="intro-label">Notre histoire</div>
+    <h2 class="intro-headline">
+      Quatre générations<br>au service de<br><em>votre intérieur.</em>
+    </h2>
+  </div>
+  <div class="intro-right reveal reveal-delay-1">
+    <p class="intro-body">
+      Chez Mobirêve, la vente de meubles et de literie se joue dans le showroom — sur la confiance, sur le conseil, sur le temps qu'on prend ensemble. Depuis 1927, la famille Vandamme accompagne les projets d'intérieur de Mouscron et de la région.
+    </p>
+    <div class="intro-stats">
+      <div class="intro-stat">
+        <div class="intro-stat-num">100</div>
+        <div class="intro-stat-label">Ans d'histoire<br>locale</div>
+      </div>
+      <div class="intro-stat">
+        <div class="intro-stat-num">4.2</div>
+        <div class="intro-stat-label">Note Google<br>100 avis</div>
+      </div>
+      <div class="intro-stat">
+        <div class="intro-stat-num">50 km</div>
+        <div class="intro-stat-label">Livraison<br>gratuite</div>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- SHOWROOMS -->
 <section class="showrooms" id="showrooms">
-  <div class="section-header fade-in">
-    <div class="eyebrow">Deux univers complémentaires</div>
-    <h2 class="section-title">Venez voir,<br>toucher, choisir.</h2>
-    <p class="section-sub">Le digital ne remplace pas l'expérience du showroom. C'est en testant un matelas, en s'asseyant dans un canapé qu'on fait le bon choix.</p>
+  <div class="showrooms-header reveal">
+    <h2 class="showrooms-title">Deux<br>showrooms,<br><em>une vision.</em></h2>
+    <p class="showrooms-subtitle">Le digital ne remplace pas l'expérience du showroom. Venez voir, toucher, choisir.</p>
   </div>
-  <div class="showrooms-grid fade-in">
+  <div class="showrooms-grid">
     <div class="showroom-card">
-      <div class="showroom-bg" style="background: linear-gradient(160deg,#3D2E1A,#2C2418); display:flex; align-items:center; justify-content:center;">
-        <svg width="90" height="90" viewBox="0 0 90 90" fill="none" opacity="0.18">
-          <rect x="5" y="42" width="80" height="40" rx="3" fill="white"/>
-          <rect x="12" y="26" width="66" height="20" rx="2" fill="white"/>
-          <rect x="8" y="80" width="10" height="10" rx="1" fill="white"/>
-          <rect x="72" y="80" width="10" height="10" rx="1" fill="white"/>
-          <ellipse cx="45" cy="35" rx="18" ry="8" fill="white" opacity="0.5"/>
+      <div class="showroom-bg" style="background: linear-gradient(160deg,#2A1F0F 0%,#1E1A14 100%); width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none" opacity="0.1">
+          <rect x="6" y="48" width="88" height="44" rx="2" fill="white"/>
+          <rect x="14" y="30" width="72" height="22" rx="2" fill="white"/>
+          <rect x="10" y="90" width="12" height="10" fill="white"/>
+          <rect x="78" y="90" width="12" height="10" fill="white"/>
+          <ellipse cx="50" cy="40" rx="22" ry="9" fill="white" opacity="0.6"/>
         </svg>
       </div>
-      <div class="showroom-overlay"></div>
-      <div class="showroom-content">
-        <div class="showroom-type">Literie · Matelas · Sommiers</div>
-        <div class="showroom-name">Showroom Literie</div>
+      <div class="showroom-veil"></div>
+      <div class="showroom-body">
+        <div class="showroom-type">Literie · Matelas · Boxspring</div>
+        <div class="showroom-name">Literie</div>
         <div class="showroom-addr">Rue de Nieuport 160 · 7700 Mouscron</div>
-        <div class="showroom-phone">📞 056 33 40 36</div>
-        <a href="#visite" class="btn-ghost">Planifier une visite →</a>
+        <div class="showroom-tel">056 33 40 36</div>
+        <a href="#visite" class="btn-showroom-link">Planifier une visite</a>
       </div>
     </div>
     <div class="showroom-card">
-      <div class="showroom-bg" style="background: linear-gradient(160deg,#1C2B4A,#2C2418); display:flex; align-items:center; justify-content:center;">
-        <svg width="90" height="90" viewBox="0 0 90 90" fill="none" opacity="0.18">
-          <rect x="5" y="50" width="80" height="34" rx="3" fill="white"/>
-          <rect x="5" y="38" width="35" height="18" rx="2" fill="white"/>
-          <rect x="50" y="33" width="35" height="22" rx="2" fill="white"/>
-          <rect x="9" y="82" width="8" height="8" rx="1" fill="white"/>
-          <rect x="73" y="82" width="8" height="8" rx="1" fill="white"/>
+      <div class="showroom-bg" style="background: linear-gradient(160deg,#15202E 0%,#1E1A14 100%); width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none" opacity="0.1">
+          <rect x="6" y="55" width="88" height="38" rx="2" fill="white"/>
+          <rect x="6" y="42" width="38" height="18" rx="1" fill="white"/>
+          <rect x="56" y="36" width="38" height="24" rx="1" fill="white"/>
+          <rect x="10" y="91" width="10" height="9" fill="white"/>
+          <rect x="80" y="91" width="10" height="9" fill="white"/>
         </svg>
       </div>
-      <div class="showroom-overlay"></div>
-      <div class="showroom-content">
-        <div class="showroom-type">Meubles · Canapés · Décoration</div>
-        <div class="showroom-name">Showroom Meubles</div>
+      <div class="showroom-veil"></div>
+      <div class="showroom-body">
+        <div class="showroom-type">Meubles · Canapés · Chambres</div>
+        <div class="showroom-name">Meubles</div>
         <div class="showroom-addr">Rue de Comines 7 · 7700 Mouscron</div>
-        <div class="showroom-phone">📞 056 39 16 50</div>
-        <a href="#visite" class="btn-ghost">Planifier une visite →</a>
+        <div class="showroom-tel">056 39 16 50</div>
+        <a href="#visite" class="btn-showroom-link">Planifier une visite</a>
       </div>
     </div>
   </div>
 </section>
 
+<!-- MARQUES — MARQUEE INFINI -->
 <section class="marques" id="marques">
-  <div class="marques-header fade-in">
-    <div>
-      <div class="eyebrow">Sélection premium</div>
-      <h2 class="section-title">Des marques choisies<br>pour durer.</h2>
-    </div>
-    <p class="marques-note">Belges et européennes. Pas de fast-furniture. Des fabricants avec lesquels on travaille depuis des années.</p>
+  <div class="marques-header reveal">
+    <h2 class="marques-title">Nos marques</h2>
+    <p class="marques-note">Belges et européennes. Des fabricants sélectionnés pour leur savoir-faire, avec lesquels on travaille depuis des années.</p>
   </div>
-  <div class="marques-grid fade-in">
-    <div class="marque-logo-pill featured"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/lattoflex.jpg" alt="lattoflex" loading="lazy"></div>
-    <div class="marque-logo-pill featured"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/ethnicraft.jpg" alt="ethnicraft" loading="lazy"></div>
-    <div class="marque-logo-pill featured"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/bultex.jpg" alt="bultex" loading="lazy"></div>
-    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/beka-logo.jpg" alt="beka" loading="lazy"></div>
-    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/mobitec.jpg" alt="mobitec" loading="lazy"></div>
-    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/sits.jpg" alt="sits" loading="lazy"></div>
-    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2026/03/modulax.jpg" alt="modulax" loading="lazy"></div>
-    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2026/03/vanlandschoot.jpg" alt="vanlandschoot" loading="lazy"></div>
-    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/sesido.jpg" alt="sesido" loading="lazy"></div>
-    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/rom.jpg" alt="rom" loading="lazy"></div>
-    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/passe-partout.jpg" alt="passe-partout" loading="lazy"></div>
-    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/maxfurn.jpg" alt="maxfurn" loading="lazy"></div>
-    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/logo-recor.jpg" alt="recor" loading="lazy"></div>
-    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/Essix-e1707985981653.jpg" alt="essix" loading="lazy"></div>
+  <div class="marquee-wrap">
+    <div class="marquee-track" id="marquee-track">
+      <!-- Premier passage -->
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/lattoflex.jpg" alt="Lattoflex"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/ethnicraft.jpg" alt="Ethnicraft"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/bultex.jpg" alt="Bultex"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/beka-logo.jpg" alt="Beka"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/mobitec.jpg" alt="Mobitec"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/sits.jpg" alt="Sits"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2026/03/modulax.jpg" alt="Modulax"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2026/03/vanlandschoot.jpg" alt="VanLandschoot"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/sesido.jpg" alt="Sesido"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/rom.jpg" alt="ROM"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/passe-partout.jpg" alt="Passe-Partout"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/maxfurn.jpg" alt="Maxfurn"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/logo-recor.jpg" alt="Recor"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/Essix-e1707985981653.jpg" alt="Essix"></div>
+      <!-- Second passage pour boucle infinie -->
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/lattoflex.jpg" alt="Lattoflex"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/ethnicraft.jpg" alt="Ethnicraft"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/bultex.jpg" alt="Bultex"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/beka-logo.jpg" alt="Beka"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/mobitec.jpg" alt="Mobitec"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/sits.jpg" alt="Sits"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2026/03/modulax.jpg" alt="Modulax"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2026/03/vanlandschoot.jpg" alt="VanLandschoot"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/sesido.jpg" alt="Sesido"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/rom.jpg" alt="ROM"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/passe-partout.jpg" alt="Passe-Partout"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/maxfurn.jpg" alt="Maxfurn"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/logo-recor.jpg" alt="Recor"></div>
+      <div class="marque-item"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/Essix-e1707985981653.jpg" alt="Essix"></div>
+    </div>
   </div>
 </section>
 
+<!-- AVIS -->
 <section class="avis" id="avis">
-  <div class="avis-header fade-in">
-    <div>
-      <div class="eyebrow">Ce que disent nos clients</div>
-      <h2 class="section-title">La confiance,<br>ça se mérite.</h2>
-    </div>
-    <div class="avis-score">
+  <div class="avis-header reveal">
+    <h2 class="avis-title">Ce que disent<br><em>nos clients.</em></h2>
+    <div class="avis-score-block">
       <div class="avis-score-num">4.2</div>
       <div class="avis-score-stars">★★★★☆</div>
-      <div class="avis-score-label">100 avis Google vérifiés</div>
+      <div class="avis-score-count">100 avis Google vérifiés</div>
     </div>
   </div>
-  <div class="avis-grid fade-in">
-    <div class="avis-card">
-      <div class="avis-stars">★★★★★</div>
-      <p class="avis-text">"Excellent conseil pour le choix de notre matelas Lattoflex. Grégoire a pris le temps de comprendre nos besoins. On a dormi la première nuit comme jamais."</p>
+  <div class="avis-grid">
+    <div class="avis-card reveal">
+      <div class="avis-quote-mark">"</div>
+      <p class="avis-text">Excellent conseil pour le choix de notre matelas Lattoflex. Grégoire a pris le temps de comprendre nos besoins. On a dormi la première nuit comme jamais.</p>
+      <div class="avis-sep"></div>
+      <div class="avis-stars-small">★★★★★</div>
       <div class="avis-author">Marie-Christine V. · Mouscron</div>
     </div>
-    <div class="avis-card">
-      <div class="avis-stars">★★★★★</div>
-      <p class="avis-text">"Une maison de confiance. Livraison soignée, installation propre, et un vrai suivi après achat. Rare de nos jours. Je recommande les yeux fermés."</p>
+    <div class="avis-card reveal reveal-delay-1">
+      <div class="avis-quote-mark">"</div>
+      <p class="avis-text">Une maison de confiance. Livraison soignée, installation propre, et un vrai suivi après achat. Rare de nos jours. Je recommande les yeux fermés.</p>
+      <div class="avis-sep"></div>
+      <div class="avis-stars-small">★★★★★</div>
       <div class="avis-author">Patrick D. · Tournai</div>
     </div>
-    <div class="avis-card">
-      <div class="avis-stars">★★★★☆</div>
-      <p class="avis-text">"Belle sélection de meubles, des marques qu'on ne trouve pas partout. Le showroom est vraiment inspirant. On a trouvé exactement ce qu'on cherchait."</p>
+    <div class="avis-card reveal reveal-delay-2">
+      <div class="avis-quote-mark">"</div>
+      <p class="avis-text">Belle sélection de meubles, des marques qu'on ne trouve pas partout. Le showroom est vraiment inspirant. On a trouvé exactement ce qu'on cherchait.</p>
+      <div class="avis-sep"></div>
+      <div class="avis-stars-small">★★★★☆</div>
       <div class="avis-author">Sophie & Marc L. · Roubaix</div>
     </div>
   </div>
 </section>
 
+<!-- FORMULAIRE -->
 <section class="formulaire" id="visite">
-  <div class="form-left fade-in">
-    <div class="eyebrow">Restez en contact</div>
-    <h2 class="section-title">Votre projet<br>mérite du temps.</h2>
-    <p class="section-sub">Laissez-nous vos coordonnées après votre visite. Grégoire vous contacte personnellement pour répondre à vos questions.</p>
-    <div class="form-features">
-      <div class="form-feature">
-        <div class="form-icon">📬</div>
-        <div class="form-feature-text"><strong>Email de confirmation immédiat</strong>Vous recevez un récapitulatif de votre visite dans les minutes qui suivent.</div>
-      </div>
-      <div class="form-feature">
-        <div class="form-icon">💬</div>
-        <div class="form-feature-text"><strong>Suivi personnalisé sous 48h</strong>Grégoire vous recontacte sur le produit qui vous intéresse.</div>
-      </div>
-      <div class="form-feature">
-        <div class="form-icon">🔒</div>
-        <div class="form-feature-text"><strong>Aucune obligation</strong>Pas de démarchage. Juste une relation de confiance.</div>
-      </div>
-    </div>
-  </div>
-  <div class="form-card fade-in">
-    <div id="form-content">
-      <div class="form-card-title">Enregistrer ma visite</div>
-      <p class="form-card-sub">Quelques secondes, et on prend soin de la suite pour vous.</p>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label" for="prenom">Prénom</label>
-          <input class="form-input" id="prenom" type="text" placeholder="Votre prénom">
+  <div class="form-grid">
+    <div class="form-left reveal">
+      <div class="form-left-label">Votre projet</div>
+      <h2 class="form-left-title">Votre projet<br><em>mérite du temps.</em></h2>
+      <p class="form-left-body">Laissez vos coordonnées après votre visite. Grégoire vous contacte personnellement pour répondre à vos questions — sans engagement.</p>
+      <div class="form-features">
+        <div class="form-feature">
+          <div class="form-feature-num">01</div>
+          <div class="form-feature-text">
+            <strong>Confirmation immédiate</strong>
+            <span>Un email de récapitulatif dans les minutes qui suivent votre visite.</span>
+          </div>
         </div>
-        <div class="form-group">
-          <label class="form-label" for="nom">Nom</label>
-          <input class="form-input" id="nom" type="text" placeholder="Votre nom">
+        <div class="form-feature">
+          <div class="form-feature-num">02</div>
+          <div class="form-feature-text">
+            <strong>Suivi sous 48h</strong>
+            <span>Grégoire vous recontacte personnellement sur le produit qui vous intéresse.</span>
+          </div>
+        </div>
+        <div class="form-feature">
+          <div class="form-feature-num">03</div>
+          <div class="form-feature-text">
+            <strong>Aucune obligation</strong>
+            <span>Pas de démarchage. Juste une relation de confiance, comme depuis 1927.</span>
+          </div>
         </div>
       </div>
-      <div class="form-group">
-        <label class="form-label" for="email">Email</label>
-        <input class="form-input" id="email" type="email" placeholder="votre@email.com">
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="produit">Produit qui vous intéresse</label>
-        <input class="form-input" id="produit" type="text" placeholder="Ex : matelas Lattoflex, canapé Ethnicraft…">
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="showroom">Showroom visité</label>
-        <select class="form-select" id="showroom">
-          <option value="">Choisir un showroom</option>
-          <option value="Literie — Rue de Nieuport 160">Literie — Rue de Nieuport 160</option>
-          <option value="Meubles — Rue de Comines 7">Meubles — Rue de Comines 7</option>
-        </select>
-      </div>
-      <button class="form-submit" onclick="submitForm()">Envoyer ma visite →</button>
-      <p class="form-note">Données protégées · Aucun spam · Résiliation immédiate</p>
     </div>
-    <div class="form-success" id="form-success">
-      <div class="form-success-icon">✉️</div>
-      <div class="form-success-title">Merci pour votre visite !</div>
-      <p class="form-success-text">Vous allez recevoir un email de confirmation dans quelques minutes.<br><br>Grégoire vous contactera personnellement sous 48h.</p>
+    <div class="form-card reveal reveal-delay-1">
+      <div id="form-content">
+        <div class="form-card-title">Enregistrer ma visite</div>
+        <p class="form-card-sub">Quelques secondes, et on prend soin de la suite.</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="prenom">Prénom</label>
+            <input class="form-input" id="prenom" type="text" placeholder="Votre prénom">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="nom">Nom</label>
+            <input class="form-input" id="nom" type="text" placeholder="Votre nom">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input class="form-input" id="email" type="email" placeholder="votre@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="produit">Produit qui vous intéresse</label>
+          <input class="form-input" id="produit" type="text" placeholder="Ex : matelas Lattoflex, canapé Ethnicraft…">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="showroom">Showroom visité</label>
+          <select class="form-select" id="showroom">
+            <option value="">Choisir un showroom</option>
+            <option value="Literie — Rue de Nieuport 160">Literie — Rue de Nieuport 160</option>
+            <option value="Meubles — Rue de Comines 7">Meubles — Rue de Comines 7</option>
+          </select>
+        </div>
+        <button class="form-submit" onclick="submitForm()">Envoyer →</button>
+        <p class="form-note">Données protégées · Aucun spam · Résiliation immédiate</p>
+      </div>
+      <div class="form-success" id="form-success">
+        <div class="form-success-title">Merci pour votre visite.</div>
+        <p class="form-success-body">Vous recevrez un email de confirmation dans quelques minutes.<br><br>Grégoire vous contactera personnellement sous 48h.</p>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div>
-      <img src="https://www.mobireve.biz/wp-content/uploads/2023/05/logo-blanc.png" alt="Mobirêve" style="height:44px;margin-bottom:16px;display:block;" onerror="this.outerHTML='<div class=footer-brand>Mobi<span>r&ecirc;ve</span></div>'">
+      <div class="footer-logo">
+        <img src="https://www.mobireve.biz/wp-content/uploads/2023/05/logo-blanc.png" alt="Mobirêve"
+             onerror="this.style.display='none'">
+      </div>
       <p class="footer-tagline">Une maison familiale à Mouscron depuis 1927. Quatre générations au service de votre intérieur.</p>
     </div>
     <div>
-      <div class="footer-col-title">Nos showrooms</div>
+      <div class="footer-col-label">Nos showrooms</div>
       <div class="footer-addr">
-        <strong>Literie</strong>Rue de Nieuport 160<br>7700 Mouscron<br><a href="tel:+3256334036" class="footer-link">056 33 40 36</a>
-        <strong>Meubles</strong>Rue de Comines 7<br>7700 Mouscron<br><a href="tel:+3256391650" class="footer-link">056 39 16 50</a>
+        <strong>Literie</strong>
+        Rue de Nieuport 160<br>7700 Mouscron<br>
+        <a href="tel:+3256334036" class="footer-link">056 33 40 36</a>
+        <strong>Meubles</strong>
+        Rue de Comines 7<br>7700 Mouscron<br>
+        <a href="tel:+3256391650" class="footer-link">056 39 16 50</a>
       </div>
     </div>
     <div>
-      <div class="footer-col-title">Contact direct</div>
+      <div class="footer-col-label">Contact</div>
       <div class="footer-addr">
-        <strong>Grégoire Vandamme</strong>Dirigeant · 4ème génération<br><a href="mailto:gregoire@mobireve.be" class="footer-link">gregoire@mobireve.be</a>
-        <strong>Site web</strong><a href="https://mobireve.biz" class="footer-link" target="_blank">mobireve.biz</a>
+        <strong>Grégoire Vandamme</strong>
+        Dirigeant · 4ème génération<br>
+        <a href="mailto:gregoire@mobireve.be" class="footer-link">gregoire@mobireve.be</a>
+        <strong>Site web</strong>
+        <a href="https://mobireve.biz" class="footer-link" target="_blank">mobireve.biz</a>
       </div>
     </div>
   </div>
@@ -413,21 +723,30 @@
 </footer>
 
 <script>
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+  // Nav scroll
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
 
+  // Reveal on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Form submit
   function submitForm() {
     const prenom = document.getElementById('prenom').value.trim();
     const email = document.getElementById('email').value.trim();
     if (!prenom || !email) { alert('Merci de renseigner votre prénom et votre email.'); return; }
-    // Brancher ici le webhook N8N :
     // fetch('https://votre-n8n.app/webhook/mobireve-visite', {
     //   method: 'POST', headers: {'Content-Type':'application/json'},
-    //   body: JSON.stringify({ prenom, nom: document.getElementById('nom').value,
+    //   body: JSON.stringify({
+    //     prenom, nom: document.getElementById('nom').value,
     //     email, produit: document.getElementById('produit').value,
-    //     showroom: document.getElementById('showroom').value })
+    //     showroom: document.getElementById('showroom').value
+    //   })
     // });
     document.getElementById('form-content').style.display = 'none';
     document.getElementById('form-success').style.display = 'block';
