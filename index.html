@@ -85,6 +85,12 @@
   .marque-pill { background: var(--blanc); border: 1px solid var(--creme-deep); padding: 14px 28px; font-size: 13px; font-weight: 600; color: var(--ardoise-mid); letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.2s; }
   .marque-pill:hover { background: var(--bois); color: var(--blanc); border-color: var(--bois); cursor: default; }
   .marque-pill.featured { background: var(--bois-pale); border-color: rgba(139,105,20,0.3); color: var(--bois); }
+  .marque-logo-pill { background: var(--blanc); border: 1px solid var(--creme-deep); padding: 16px 24px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; min-width: 140px; }
+  .marque-logo-pill img { height: 36px; width: auto; max-width: 120px; object-fit: contain; filter: grayscale(1); opacity: 0.65; transition: all 0.2s; }
+  .marque-logo-pill:hover img { filter: grayscale(0); opacity: 1; }
+  .marque-logo-pill:hover { border-color: var(--bois); cursor: default; }
+  .marque-logo-pill.featured { background: var(--bois-pale); border-color: rgba(139,105,20,0.3); }
+  .marque-logo-pill.featured img { filter: grayscale(0); opacity: 1; }
 
   /* AVIS */
   .avis { background: var(--navy); padding: 100px 90px; }
@@ -173,7 +179,7 @@
 <div class="timeline-rail" aria-hidden="true"></div>
 
 <nav>
-  <div class="nav-logo">Mobi<span>rêve</span></div>
+  <a href="#hero" style="display:flex;align-items:center;"><img src="https://www.mobireve.biz/wp-content/uploads/2023/05/logo-blanc.png" alt="Mobirêve" style="height:36px;" onerror="this.outerHTML='<div class=nav-logo>Mobi<span style=color:#8B6914>r&ecirc;ve</span></div>'"></a>
   <ul class="nav-links">
     <li><a href="#showrooms">Showrooms</a></li>
     <li><a href="#marques">Marques</a></li>
@@ -194,20 +200,13 @@
     <div class="hero-stats">
       <div><div class="stat-num">100</div><div class="stat-label">Ans d'histoire locale</div></div>
       <div><div class="stat-num">4.2★</div><div class="stat-label">100 avis Google</div></div>
-      <div><div class="stat-num">80 km</div><div class="stat-label">Rayon de livraison</div></div>
+      <div><div class="stat-num">50 km</div><div class="stat-label">Livraison gratuite</div></div>
     </div>
   </div>
   <div class="hero-right">
-    <div class="hero-bg-placeholder">
-      <svg width="130" height="130" viewBox="0 0 130 130" fill="none" opacity="0.12">
-        <rect x="8" y="70" width="114" height="52" rx="3" fill="#F8F4ED"/>
-        <rect x="18" y="48" width="94" height="28" rx="3" fill="#F8F4ED"/>
-        <rect x="12" y="120" width="14" height="10" rx="1" fill="#F8F4ED"/>
-        <rect x="104" y="120" width="14" height="10" rx="1" fill="#F8F4ED"/>
-        <rect x="38" y="32" width="54" height="20" rx="2" fill="#F8F4ED"/>
-        <path d="M48 32 L65 14 L82 32" stroke="#F8F4ED" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
-      </svg>
-    </div>
+    <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" onerror="this.style.display='none'">
+      <source src="https://www.mobireve.biz/wp-content/uploads/2024/01/videoweb.mp4" type="video/mp4">
+    </video>
     <div class="hero-overlay"></div>
     <div class="hero-gen" aria-hidden="true">
       <div class="hero-gen-num">4</div>
@@ -277,20 +276,20 @@
     <p class="marques-note">Belges et européennes. Pas de fast-furniture. Des fabricants avec lesquels on travaille depuis des années.</p>
   </div>
   <div class="marques-grid fade-in">
-    <div class="marque-pill featured">Lattoflex</div>
-    <div class="marque-pill featured">Ethnicraft</div>
-    <div class="marque-pill featured">Bultex</div>
-    <div class="marque-pill">Beka</div>
-    <div class="marque-pill">Mobitec</div>
-    <div class="marque-pill">Sits</div>
-    <div class="marque-pill">Modulax</div>
-    <div class="marque-pill">VanLandschoot</div>
-    <div class="marque-pill">Sesido</div>
-    <div class="marque-pill">ROM</div>
-    <div class="marque-pill">Passe-Partout</div>
-    <div class="marque-pill">Maxfurn</div>
-    <div class="marque-pill">Recor</div>
-    <div class="marque-pill">Essix</div>
+    <div class="marque-logo-pill featured"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/lattoflex.jpg" alt="lattoflex" loading="lazy"></div>
+    <div class="marque-logo-pill featured"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/ethnicraft.jpg" alt="ethnicraft" loading="lazy"></div>
+    <div class="marque-logo-pill featured"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/bultex.jpg" alt="bultex" loading="lazy"></div>
+    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/beka-logo.jpg" alt="beka" loading="lazy"></div>
+    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/mobitec.jpg" alt="mobitec" loading="lazy"></div>
+    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/sits.jpg" alt="sits" loading="lazy"></div>
+    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2026/03/modulax.jpg" alt="modulax" loading="lazy"></div>
+    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2026/03/vanlandschoot.jpg" alt="vanlandschoot" loading="lazy"></div>
+    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/sesido.jpg" alt="sesido" loading="lazy"></div>
+    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/rom.jpg" alt="rom" loading="lazy"></div>
+    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/passe-partout.jpg" alt="passe-partout" loading="lazy"></div>
+    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/maxfurn.jpg" alt="maxfurn" loading="lazy"></div>
+    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/logo-recor.jpg" alt="recor" loading="lazy"></div>
+    <div class="marque-logo-pill"><img src="https://www.mobireve.biz/wp-content/uploads/2024/02/Essix-e1707985981653.jpg" alt="essix" loading="lazy"></div>
   </div>
 </section>
 
@@ -389,7 +388,7 @@
 <footer>
   <div class="footer-top">
     <div>
-      <div class="footer-brand">Mobi<span>rêve</span></div>
+      <img src="https://www.mobireve.biz/wp-content/uploads/2023/05/logo-blanc.png" alt="Mobirêve" style="height:44px;margin-bottom:16px;display:block;" onerror="this.outerHTML='<div class=footer-brand>Mobi<span>r&ecirc;ve</span></div>'">
       <p class="footer-tagline">Une maison familiale à Mouscron depuis 1927. Quatre générations au service de votre intérieur.</p>
     </div>
     <div>
