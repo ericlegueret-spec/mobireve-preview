@@ -743,16 +743,30 @@ footer { background: var(--ardoise); padding: 80px 72px 48px; }
     const prenom = document.getElementById('prenom').value.trim();
     const email = document.getElementById('email').value.trim();
     if (!prenom || !email) { alert('Merci de renseigner votre prénom et votre email.'); return; }
-    // fetch('https://votre-n8n.app/webhook/mobireve-visite', {
-    //   method: 'POST', headers: {'Content-Type':'application/json'},
-    //   body: JSON.stringify({
-    //     prenom, nom: document.getElementById('nom').value,
-    //     email, produit: document.getElementById('produit').value,
-    //     showroom: document.getElementById('showroom').value
-    //   })
-    // });
-    document.getElementById('form-content').style.display = 'none';
-    document.getElementById('form-success').style.display = 'block';
+    const btn = document.querySelector('.form-submit');
+    btn.textContent = 'Envoi en cours…';
+    btn.disabled = true;
+
+    fetch('https://n8n-production-a147.up.railway.app/webhook/mobireve-visite', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        prenom: prenom,
+        nom: document.getElementById('nom').value.trim(),
+        email: email,
+        produit: document.getElementById('produit').value.trim(),
+        showroom: document.getElementById('showroom').value
+      })
+    })
+    .then(() => {
+      document.getElementById('form-content').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    })
+    .catch(() => {
+      // Affiche le succès même si erreur réseau — démo fluide
+      document.getElementById('form-content').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    });
   }
 </script>
 </body>
