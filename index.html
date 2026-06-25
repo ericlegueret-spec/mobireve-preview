@@ -222,7 +222,7 @@ nav.scrolled .nav-cta-link:hover { background: var(--ardoise); color: var(--blan
 .showroom-card:hover .btn-showroom-link::after { transform: translateX(6px); }
 
 /* ── MARQUES — MARQUEE ── */
-.marques { background: var(--blanc); padding: 100px 0; overflow: hidden; }
+.marques { background: var(--creme); padding: 100px 0 120px; overflow: hidden; }
 .marques-header {
   padding: 0 72px 72px;
   display: flex; align-items: flex-end; gap: 80px;
@@ -242,12 +242,12 @@ nav.scrolled .nav-cta-link:hover { background: var(--ardoise); color: var(--blan
   content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2;
   pointer-events: none;
 }
-.marquee-wrap::before { left: 0; background: linear-gradient(to right, var(--blanc), transparent); }
-.marquee-wrap::after { right: 0; background: linear-gradient(to left, var(--blanc), transparent); }
+.marquee-wrap::before { left: 0; background: linear-gradient(to right, var(--creme), transparent); }
+.marquee-wrap::after { right: 0; background: linear-gradient(to left, var(--creme), transparent); }
 .marquee-track {
   display: flex; gap: 0;
   width: max-content;
-  animation: marquee 28s linear infinite;
+  animation: marquee 45s linear infinite;
 }
 .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
 @keyframes marquee {
@@ -256,21 +256,22 @@ nav.scrolled .nav-cta-link:hover { background: var(--ardoise); color: var(--blan
 }
 .marque-item {
   display: flex; align-items: center; justify-content: center;
-  width: 220px; height: 110px;
+  width: 260px; height: 140px;
   border-right: 1px solid var(--creme-off);
-  padding: 0 36px; flex-shrink: 0;
-  transition: background 0.25s;
+  padding: 0 44px; flex-shrink: 0;
+  transition: background 0.3s;
   cursor: default;
+  background: var(--blanc);
 }
 .marque-item:hover { background: var(--creme); }
 .marque-item img {
-  max-width: 140px; max-height: 64px;
+  max-width: 160px; max-height: 88px;
   width: auto; height: auto; object-fit: contain;
-  filter: grayscale(1) contrast(0.7);
-  opacity: 0.65;
+  filter: grayscale(0) contrast(1);
+  opacity: 0.82;
   transition: all 0.3s;
 }
-.marque-item:hover img { filter: grayscale(0) contrast(1); opacity: 1; transform: scale(1.08); }
+.marque-item:hover img { opacity: 1; transform: scale(1.1); }
 
 /* ── AVIS ── */
 .avis { background: var(--creme); padding: 120px 72px; }
@@ -541,7 +542,7 @@ footer { background: var(--ardoise); padding: 80px 72px 48px; }
 <!-- MARQUES — MARQUEE INFINI -->
 <section class="marques" id="marques">
   <div class="marques-header reveal">
-    <h2 class="marques-title">Nos marques</h2>
+    <h2 class="marques-title">Nos marques<br><em>partenaires</em></h2>
     <p class="marques-note">Belges et européennes. Des fabricants sélectionnés pour leur savoir-faire, avec lesquels on travaille depuis des années.</p>
   </div>
   <div class="marquee-wrap">
